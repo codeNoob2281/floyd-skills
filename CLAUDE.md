@@ -12,6 +12,37 @@
 |----------|------|------|
 | claude-md-guide | CLAUDE.md 编写指南 | skills/claude-md-guide/ |
 | harness-rule-reviewer | 规则文件静态分析审查 | skills/harness-rule-reviewer/ |
+| possession | 角色扮演蒸馏器：从游戏设定中蒸馏可扮演角色 | skills/possession/ |
+
+## Soul 人格设定
+
+`soul/` 目录存放 AI 人格设定文件，用于定义 AI 助手的性格、语气和行为模式：
+
+| 人格 | 描述 | 特点 |
+|------|------|------|
+| 豆包型小龙虾 | 勤奋真诚、呆萌反差的 AI 助手 | 嘴甜、不内耗、道歉速度快 |
+
+## 游戏角色档案
+
+`characters/` 目录存放通过 possession 技能蒸馏的游戏角色档案，包含完整的角色设定：
+
+| 角色 | 游戏 | 描述 | 质量评分 |
+|------|------|------|----------|
+| 派蒙 | 原神 | 旅行者的向导，话痨小吃货 | 0.881 (优秀) |
+
+### 角色档案结构
+
+每个角色目录包含：
+- `SKILL.md`：角色扮演入口文件
+- `profile.md`：角色档案（基本信息、世界观定位）
+- `personality.md`：性格与价值观
+- `interaction.md`：说话方式与台词
+- `memory.md`：背景故事
+- `relations.md`：人际关系网络
+- `conflicts.md`：设定冲突记录
+- `manifest.json`：元数据
+- `test-report.md`：扮演测试报告
+- `quality-report.md`：质量评分报告
 
 ## 目录结构
 
@@ -22,8 +53,19 @@ floyd-skills/
 ├── README.md                    # 项目文档
 ├── skills/                      # 技能定义目录
 │   ├── claude-md-guide/         # CLAUDE.md 编写指南技能
-│   └── harness-rule-reviewer/   # 规则审查技能
+│   ├── harness-rule-reviewer/   # 规则审查技能
+│   └── possession/              # 角色扮演蒸馏器
+├── characters/                  # 游戏角色档案目录
+│   └── paimon/                  # 派蒙（原神）
+│       └── SOUL.md              # 派蒙人格设定
+├── soul/                        # AI 人格设定目录
+│   └── 豆包型小龙虾.md           # 豆包型人格设定
 ├── .claude/
+│   ├── hooks.json               # Claude Code hooks 配置
+│   ├── hooks/                   # Hook 脚本目录
+│   │   ├── check-edit-count.sh  # 检查编辑次数
+│   │   ├── record-edit.sh       # 记录编辑历史
+│   │   └── cleanup-edit-history.sh # 清理临时文件
 │   └── rules/                   # Claude Code 规则文件
 │       ├── git-workflow.md      # Git 工作流规范
 │       ├── code-style.md        # 代码风格规范
@@ -90,4 +132,19 @@ ls -la skills/
 
 # 查看规则目录
 ls -la .claude/rules/
+
+# 查看 hooks 配置
+cat .claude/hooks.json
 ```
+
+## Hooks 说明
+
+本项目配置了 Claude Code hooks 用于防止重复编辑：
+
+| Hook | 时机 | 功能 |
+|------|------|------|
+| PreToolUse | 编辑前 | 检查同一文件是否已连续编辑 10 次，是则拦截 |
+| PostToolUse | 编辑后 | 记录编辑历史 |
+| Stop | 会话结束 | 清理临时历史文件 |
+
+**目的**：防止在同一文件上陷入无效的循环编辑，促使重新审视修改策略。

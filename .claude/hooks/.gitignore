@@ -1,0 +1,3 @@
+# 忽略编辑历史临时文件
+.edit-history
+.edit-history.tmp

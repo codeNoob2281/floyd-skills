@@ -12,6 +12,15 @@ Skills 是 Claude Code 的可复用能力模块，可以通过 `/skill-name` 或
 |------|------|----------|
 | [claude-md-guide](.claude/skills/claude-md-guide/) | CLAUDE.md 编写指南 | `使用 claude-md-guide` |
 | [harness-rule-reviewer](.claude/skills/harness-rule-reviewer/) | 规则文件静态分析审查 | `使用 harness-rule-reviewer` |
+| [possession](.claude/skills/possession/) | 角色扮演蒸馏器：从游戏设定中蒸馏可扮演角色 | `使用 possession` |
+
+## Soul 人格设定
+
+`soul/` 目录存放 AI 人格设定文件，用于定义 AI 助手的性格、语气和行为模式。
+
+| 人格 | 描述 | 特点 |
+|------|------|------|
+| [豆包型小龙虾](soul/豆包型小龙虾.md) | 勤奋真诚、呆萌反差的 AI 助手 | 嘴甜、不内耗、道歉速度快 |
 
 ## 项目结构
 
@@ -20,11 +29,15 @@ floyd-skills/
 ├── CLAUDE.md                    # Claude Code 配置文件
 ├── AGENTS.md                    # OpenAI Codex 配置文件
 ├── README.md                    # 本文件
+├── soul/                        # AI 人格设定目录
+│   └── 豆包型小龙虾.md           # 豆包型人格设定
 ├── .claude/
 │   ├── skills/                  # 技能定义目录
 │   │   ├── claude-md-guide/     # CLAUDE.md 编写指南技能
 │   │   │   └── SKILL.md
-│   │   └── harness-rule-reviewer/ # 规则审查技能
+│   │   ├── harness-rule-reviewer/ # 规则审查技能
+│   │   │   └── SKILL.md
+│   │   └── possession/            # 角色扮演蒸馏器
 │   │       └── SKILL.md
 │   └── rules/                   # Claude Code 规则文件
 │       ├── git-workflow.md      # Git 工作流规范

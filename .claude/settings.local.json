@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash .claude/hooks/record-edit.sh \"test-file.txt\")",
+      "Bash(bash .claude/hooks/check-edit-count.sh \"test-file.txt\")",
+      "Bash(bash .claude/hooks/record-edit.sh)",
+      "Bash(jq --version)",
+      "Bash(bash .claude/hooks/check-edit-count.sh)",
+      "Bash(echo '{\"tool_input\": {\"file_path\": \"E:\\\\\\\\Work\\\\\\\\vsProject\\\\\\\\floyd-skills\\\\\\\\test-edit-count.txt\"}}')",
+      "Bash(bash -x .claude/hooks/check-edit-count.sh)",
+      "Bash(python -c ' *)",
+      "Bash(python .claude/hooks/record-edit.py \"test-file.md\")",
+      "Bash(python .claude/hooks/check-edit-count.py \"test-file.md\")",
+      "Bash(python .claude/hooks/cleanup-edit-history.py)",
+      "Bash(python .claude/hooks/record-edit.py \"target.md\")",
+      "Bash(python .claude/hooks/check-edit-count.py \"target.md\")",
+      "Bash(echo \"exit code: $?\")",
+      "Bash(xxd *)",
+      "Bash(python .claude/hooks/record-edit.py)",
+      "Bash(python .claude/hooks/check-edit-count.py)",
+      "Bash(echo \"exit: $?\")"
+    ]
+  }
+}
